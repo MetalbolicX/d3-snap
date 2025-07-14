@@ -33,8 +33,8 @@ export class D3Snap {
   options: D3SnapOptions;
   jsDom: JSDOM;
   document: Document;
-  window: Window;
-  d3Element: d3.Selection<HTMLElement, unknown, null, undefined>;
+  window: Window | null;
+  d3Element: d3.Selection<d3.BaseType, unknown, null, undefined>;
   d3: typeof d3;
 
   constructor({
@@ -46,7 +46,7 @@ export class D3Snap {
   }: D3SnapOptions = {}) {
     const jsDom = container ? new JSDOM(container) : new JSDOM();
     const document = jsDom.window.document;
-    const d3Element = selector
+    const d3Element: any = selector
       ? d3Module.select(document.body).select(selector)
       : d3Module.select(document.body);
 
@@ -118,7 +118,7 @@ export class D3Snap {
    * @returns SVG string.
    */
   svgString(): string {
-    const svgNode = this.d3Element.select("svg").node();
+    const svgNode = this.d3Element.select("svg").node() as SVGSVGElement | null;
     return svgNode ? fixXmlCase(svgNode.outerHTML) : "";
   }
 
@@ -129,12 +129,16 @@ export class D3Snap {
   html(): string {
     return this.jsDom.serialize();
   }
-
   /**
    * Returns the chart HTML for the selected element.
    * @returns Chart HTML string.
    */
   chartHTML(): string {
-    return this.document.querySelector(this.options.selector)?.outerHTML ?? "";
+    const { selector } = this.options;
+    if (!selector) {
+      return "";
+    }
+    const element = this.document.querySelector(selector);
+    return element?.outerHTML ?? "";
   }
 }
