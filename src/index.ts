@@ -1,0 +1,140 @@
+import * as d3 from "d3";
+import { JSDOM } from "jsdom";
+
+/**
+ * Fixes SVG tag names that jsdom lowercases.
+ * @param text - The SVG string to fix.
+ * @returns The fixed SVG string.
+ */
+const fixXmlCase = (text: string): string => {
+  const tagNames = ["linearGradient", "radialGradient", "clipPath", "textPath"];
+  return tagNames.reduce(
+    (text, tagName) =>
+      text.replace(
+        new RegExp(`(<|</)${tagName.toLowerCase()}\\b`, "g"),
+        (_, start) => `${start}${tagName}`
+      ),
+    text
+  );
+};
+
+interface D3SnapOptions {
+  d3Module?: typeof d3;
+  selector?: string;
+  container?: string;
+  styles?: string;
+  canvasModule?: any;
+}
+
+/**
+ * D3Node provides a virtual DOM for d3 visualizations.
+ */
+export class D3Snap {
+  options: D3SnapOptions;
+  jsDom: JSDOM;
+  document: Document;
+  window: Window;
+  d3Element: d3.Selection<HTMLElement, unknown, null, undefined>;
+  d3: typeof d3;
+
+  constructor({
+    d3Module = d3,
+    selector = "",
+    container = "",
+    styles = "",
+    canvasModule = "",
+  }: D3SnapOptions = {}) {
+    const jsDom = container ? new JSDOM(container) : new JSDOM();
+    const document = jsDom.window.document;
+    const d3Element = selector
+      ? d3Module.select(document.body).select(selector)
+      : d3Module.select(document.body);
+
+    this.options = { d3Module, selector, container, styles, canvasModule };
+    this.jsDom = jsDom;
+    this.document = document;
+    this.window = document.defaultView;
+    this.d3Element = d3Element;
+    this.d3 = d3Module;
+  }
+
+  /**
+   * Creates an SVG element with optional width, height, and attributes.
+   * @param width - SVG width.
+   * @param height - SVG height.
+   * @param attrs - Additional attributes.
+   * @returns The SVG selection.
+   */
+  createSVG(
+    width?: number,
+    height?: number,
+    attrs?: Record<string, string | number>
+  ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
+    const svg = this.d3Element
+      .append("svg")
+      .attr("xmlns", "http://www.w3.org/2000/svg");
+
+    if (width && height) {
+      svg.attr("width", width).attr("height", height);
+    }
+
+    if (attrs) {
+      Object.entries(attrs).forEach(([key, value]) => {
+        svg.attr(key, value);
+      });
+    }
+
+    if (this.options.styles) {
+      svg
+        .append("defs")
+        .append("style")
+        .attr("type", "text/css")
+        .text(`<![CDATA[ ${this.options.styles} ]]>`);
+    }
+    return svg;
+  }
+
+  /**
+   * Creates a Canvas element using the provided canvas module.
+   * @param width - Canvas width.
+   * @param height - Canvas height.
+   * @returns The Canvas instance.
+   */
+  createCanvas(width: number, height: number): any {
+    const Canvas = this.options.canvasModule;
+    if (!Canvas || !Canvas.version) {
+      throw new Error("Install node-canvas for HTMLCanvasElement support.");
+    }
+    const canvas =
+      parseInt(Canvas.version) >= 2
+        ? new Canvas.Canvas(width, height)
+        : new Canvas(width, height);
+    this.options.canvasModule = canvas;
+    return canvas;
+  }
+
+  /**
+   * Returns the SVG string from the DOM.
+   * @returns SVG string.
+   */
+  svgString(): string {
+    const svgNode = this.d3Element.select("svg").node();
+    return svgNode ? fixXmlCase(svgNode.outerHTML) : "";
+  }
+
+  /**
+   * Serializes the DOM to HTML.
+   * @returns HTML string.
+   */
+  html(): string {
+    return this.jsDom.serialize();
+  }
+
+  /**
+   * Returns the chart HTML for the selected element.
+   * @returns Chart HTML string.
+   */
+  chartHTML(): string {
+    return this.document.querySelector(this.options.selector)?.outerHTML ?? "";
+  }
+}
