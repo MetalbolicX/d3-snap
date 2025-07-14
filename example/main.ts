@@ -1,7 +1,7 @@
-import { D3Node } from "../src/index.ts";
+import { D3Snap } from "../src/index.ts";
 
 // Example 1: Create a simple SVG with a circle
-const node1 = new D3Node();
+const node1 = new D3Snap();
 const svg1 = node1.createSVG(200, 200);
 svg1.append("circle")
   .attr("cx", 100)
@@ -11,7 +11,7 @@ svg1.append("circle")
 console.log("SVG with circle:\n", node1.svgString());
 
 // Example 2: Create SVG with custom styles
-const node2 = new D3Node({
+const node2 = new D3Snap({
   styles: "circle { stroke: red; stroke-width: 4; }"
 });
 const svg2 = node2.createSVG(150, 150);
@@ -23,7 +23,7 @@ svg2.append("circle")
 console.log("SVG with styled circle:\n", node2.svgString());
 
 // Example 3: Serialize the DOM to HTML
-const node3 = new D3Node({ container: "<div id='chart'></div>", selector: "#chart" });
+const node3 = new D3Snap({ container: "<div id='chart'></div>", selector: "#chart" });
 const svg3 = node3.createSVG(100, 100);
 svg3.append("rect")
   .attr("x", 10)
@@ -34,7 +34,7 @@ svg3.append("rect")
 console.log("Serialized HTML:\n", node3.html());
 
 // Example 4: Get chart HTML for a selected element
-const node4 = new D3Node({ container: "<section><svg></svg></section>", selector: "svg" });
+const node4 = new D3Snap({ container: "<section><svg></svg></section>", selector: "svg" });
 const svg4 = node4.createSVG(50, 50);
 svg4.append("ellipse")
   .attr("cx", 25)
