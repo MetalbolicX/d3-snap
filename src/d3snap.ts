@@ -147,7 +147,7 @@ export class D3Snap {
    * Returns the SVG string from the DOM.
    * @returns SVG string.
    */
-  svgString(): string {
+  public get svgString(): string {
     const svgNode = this.d3Element.select("svg").node() as SVGSVGElement | null;
     return svgNode ? fixXmlCase(svgNode.outerHTML) : "";
   }
@@ -156,14 +156,14 @@ export class D3Snap {
    * Serializes the DOM to HTML.
    * @returns HTML string.
    */
-  html(): string {
+  public get html(): string {
     return this.jsDom.serialize();
   }
   /**
    * Returns the chart HTML for the selected element.
    * @returns Chart HTML string.
    */
-  chartHTML(): string {
+  public get chartHTML(): string {
     const { selector } = this.options;
     if (!selector) {
       return "";
