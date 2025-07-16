@@ -31,10 +31,10 @@ export interface D3SnapOptions {
  */
 export class D3Snap {
   options: D3SnapOptions;
-  jsDom: JSDOM;
-  document: Document;
-  window: Window | null;
-  d3Element: d3.Selection<d3.BaseType, unknown, null, undefined>;
+  #jsDom: JSDOM;
+  #document: Document;
+  #window: Window | null;
+  #d3Element: d3.Selection<d3.BaseType, unknown, null, undefined>;
   d3: typeof d3;
 
   /**
@@ -72,10 +72,10 @@ export class D3Snap {
       : d3Module.select(document.body);
 
     this.options = { d3Module, selector, container, styles, canvasModule };
-    this.jsDom = jsDom;
-    this.document = document;
-    this.window = document.defaultView;
-    this.d3Element = d3Element;
+    this.#jsDom = jsDom;
+    this.#document = document;
+    this.#window = document.defaultView;
+    this.#d3Element = d3Element;
     this.d3 = d3Module;
   }
 
@@ -95,7 +95,7 @@ export class D3Snap {
     height?: number,
     attrs?: Record<string, string | number>
   ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
-    const svg = this.d3Element
+    const svg = this.#d3Element
       .append("svg")
       .attr("xmlns", "http://www.w3.org/2000/svg");
 
@@ -148,7 +148,7 @@ export class D3Snap {
    * @returns SVG string.
    */
   public get svgString(): string {
-    const svgNode = this.d3Element.select("svg").node() as SVGSVGElement | null;
+    const svgNode = this.#d3Element.select("svg").node() as SVGSVGElement | null;
     return svgNode ? fixXmlCase(svgNode.outerHTML) : "";
   }
 
@@ -157,7 +157,7 @@ export class D3Snap {
    * @returns HTML string.
    */
   public get html(): string {
-    return this.jsDom.serialize();
+    return this.#jsDom.serialize();
   }
   /**
    * Returns the chart HTML for the selected element.
@@ -168,7 +168,7 @@ export class D3Snap {
     if (!selector) {
       return "";
     }
-    const element = this.document.querySelector(selector);
+    const element = this.#document.querySelector(selector);
     return element?.outerHTML ?? "";
   }
 }
