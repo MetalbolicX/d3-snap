@@ -130,20 +130,10 @@ const canvas = d3Snap.createCanvas(400, 300, {
 
 ### svgToString
 
-Returns the SVG string from the DOM.
-
-#### Signature
+Returns the SVG string representation of the current SVG element.
 
 ```ts
-svgToString(): string;
-```
-
-#### Returns
-
-The SVG string representation of the current SVG element.
-
-```ts
-const svgString = d3Snap.svgToString();
+const svgString = d3Snap.svgToString;
 ```
 
 ### html
