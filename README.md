@@ -4,90 +4,63 @@
   <img src="./images/logo.png" alt="d3-snap Logo" width="200" height="200" />
 </div>
 
-> `d3-snap` small slogan.
+> `d3-snap` Don't limit yourself just to the browser. Visualize your data also on the server.
 
 **Supported Versions:**
 
-![Something](https://img.shields.io/badge/something->=1.5.5-blue)
-
+![d3.js](https://img.shields.io/badge/d3.js->=7.x.x-blue)
+![jsdom](https://img.shields.io/badge/jsdom->=26.x.x-blue)
 
 ## Features
 
-- 1.
-- 2.
+- Capture d3.js visualizations on the server.
+- Easy integration with existing d3.js projects.
 
 ## 🚀 Quick Installation
 
-### 1. Create a ReScript Application
+### Download Dependencies
 
-First, create a new ReScript application using one of the following commands:
-
-```sh
-npm create rescript-app@latest
-```
-
-> [!NOTE]
-> For more information on setting up a ReScript project, refer to the [official ReScript documentation](https://rescript-lang.org/docs/manual/latest/installation).
-
-### 2. Install Dependencies
-
-Add the required dependencies to your project:
+Download the `d3-snap` package from npm:
 
 ```sh
-npm i vanjs-core d3-snap
-```
-
-### 3. Update Configuration `rescript.json` file
-
-In your `rescript.json` file, add the following dependency:
-
-```json
-{
-  "bs-dependencies": ["d3-snap"]
-}
+npm i d3-snap
 ```
 
 ## 🙌 Hello World Example
 
-Here's a simple example of how to use `d3-snap` to create a reactive UI component:
+Here's a simple example of how to use `d3-snap`:
 
-1. Create a file named `Main.res` in your `src` folder.
-2. Add the following code to `Main.res`:
+1. Create a file named `main.mjs` in your `src` folder.
+2. Add the following code to `main.mjs`:
 
-```rescript
-@val @scope("document") @return(nullable)
-external getElementById: string => option<Dom.element> = "getElementById"
+```js
+import { D3Snap } from "d3-snap";
 
-let root = switch getElementById("root") {
-| Some(el) => el
-| None => Exn.raiseError("Root element not found")
-}
+const node = new D3Snap({
+  container: "<section><svg></svg></section>",
+  selector: "svg",
+});
+const svg = node.createSVG(50, 50);
+svg
+  .append("text")
+  .text("Hello, D3!")
+  .attr("x", 10)
+  .attr("y", 20);
 
-let hello: unit => Dom.element = () => {
-  Van.Tag.make("div")
-  ->Van.Tags.addChild(Text("Hello, World!"))
-  ->Van.Tags.build
-}
-
-Van.add(root, [Dom(hello())])->ignore
+console.log("Svg message: ", node.svgString);
 ```
-
-## 🛠 Build and Run
-
-To build and run your ReScript application, see the [Compile and Run](https://metalbolicx.github.io/d3-snap/#/compile-run) section.
 
 ## 📚 Documentation
 
 <div align="center">
 
-  [![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://metalbolicx.github.io/d3-snap/#/api-reference)
+  [![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://metalbolicx.github.io/d3-snap/)
 
 </div>
 
 ## ✍ Do you want to learn more?
 
-- 1.
-- 2.
+- Learn more about [d3.js](https://d3js.org/).
 
 ## Contributing
 
@@ -98,15 +71,15 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 <table style="border: none;">
   <tr>
     <td align="center">
-      <a href="https://vanjs.org/" target="_blank">
-        <img src="./images/vanjs-logo.png" alt="VanJS" width="42" height="42" /><br/>
-        <b>VanJS</b><br/>
+      <a href="https://github.com/jsdom/jsdom?tab=readme-ov-file" target="_blank">
+        <img src="https://raw.githubusercontent.com/jsdom/jsdom/refs/heads/main/logo.svg" alt="JsDom" width="42" height="42" /><br/>
+        <b>JsDom</b><br/>
       </a>
     </td>
     <td align="center">
-      <a href="https://rescript-lang.org/" target="_blank">
-        <img src="./images/rescript-logo.png" alt="ReScript" width="42" height="42" /><br/>
-        <b>ReScript</b><br/>
+      <a href="https://d3js.org/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Logo_D3.svg" alt="D3.js" width="42" height="42" /><br/>
+        <b>D3.js</b><br/>
       </a>
     </td>
   </tr>

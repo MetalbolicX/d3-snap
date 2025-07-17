@@ -17,6 +17,7 @@
     }
   },
   "scripts": {
+    "docs": "docsify serve docs",
     "start": "echo \"Hello world\"",
     "build": "tsdown"
   },
