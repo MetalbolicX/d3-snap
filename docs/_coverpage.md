@@ -1,8 +1,9 @@
 ![logo](_media/d3-snap.svg)
 
-> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, dolores optio. Voluptates minima tempora ab perspiciatis! Voluptate, blanditiis. Illo, repellat. Quo nam ex, voluptatem voluptatum quia perferendis est explicabo at?
+> Visualize your data also on the server with D3.js, don't limit yourself just to the browser.
 
-![ReScript version](https://img.shields.io/badge/ReScript-%3E%3D11.0.0-blue)
+![D3 version](https://img.shields.io/badge/D3-%3E%3D7.9.0-blue)
+![JsDOM version](https://img.shields.io/badge/JsDOM-%3E%3D26.1.0-blue)
 
 [Getting Started](/getting-started)
 [API Reference](/api-reference)
