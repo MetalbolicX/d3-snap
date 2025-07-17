@@ -12,6 +12,8 @@ The `D3Snap` object is the main entry point for using the `d3-snap` module. It p
 
 Creates a new instance of `D3Snap`.
 
+#### Signature
+
 ```ts
 new D3Snap(options?: {
   selector?: string;
@@ -40,7 +42,7 @@ import { D3Snap } from "d3-snap";
 const d3Snap = new D3Snap({
   selector: "#chart",
   container: '<div id="chart"></div>',
-  styles: "svg { background: #fff; }"
+  styles: "svg { background: #fff; }",
 });
 const svg = d3Snap.createSVG(400, 300);
 ```
@@ -51,7 +53,7 @@ import * as Canvas from "canvas";
 const d3SnapCanvas = new D3Snap({
   selector: "#canvas-chart",
   container: '<div id="canvas-chart"></div>',
-  canvasModule: Canvas
+  canvasModule: Canvas,
 });
 const canvas = d3SnapCanvas.createCanvas(400, 300);
 ```
@@ -67,4 +69,62 @@ const canvas = d3SnapCanvas.createCanvas(400, 300);
 
 ### createSVG
 
-Creates an SVG element with optional width, height, and attributes.
+Creates an SVG element.
+
+#### Signature
+
+```ts
+createSVG(
+  width: number = 800,
+  height: number = 600,
+  attrs?: Record<string, string | number>):
+  d3.Selection<SVGSVGElement, unknown, null, undefined>;
+```
+
+#### Parameters
+
+- `width` (number, optional): The width of the SVG. Defaults to `800`.
+- `height` (number, optional): The height of the SVG. Defaults to `600`.
+- `attrs` (Record<string, string | number>, optional): Additional attributes to set on the SVG element.
+
+#### Returns
+
+A D3 selection of the created SVG element.
+
+#### Example
+
+```ts
+const svg = d3Snap.createSVG(400, 300, {
+  id: "my-svg",
+  class: "chart",
+});
+```
+
+### createCanvas
+
+Creates a Canvas element.
+
+#### Signature
+
+```ts
+createCanvas(width: number = 800, height: number = 600): any;
+```
+
+#### Parameters
+
+- `width` (number, optional): The width of the Canvas. Defaults to `800`.
+- `height` (number, optional): The height of the Canvas. Defaults to `600`.
+
+#### Returns
+
+An instance of the Canvas element created using the provided canvas module.
+
+#### Example
+
+```ts
+const canvas = d3Snap.createCanvas(400, 300, {
+  id: "my-canvas",
+  class: "canvas-chart",
+});
+```
+
