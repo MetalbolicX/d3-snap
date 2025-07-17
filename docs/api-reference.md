@@ -128,6 +128,8 @@ const canvas = d3Snap.createCanvas(400, 300, {
 });
 ```
 
+## D3Snap Getters
+
 ### svgToString
 
 Returns the SVG string representation of the current SVG element.
