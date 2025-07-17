@@ -1,4 +1,4 @@
-![logo](_media/logo.svg)
+![logo](_media/d3-snap.svg)
 
 > Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, dolores optio. Voluptates minima tempora ab perspiciatis! Voluptate, blanditiis. Illo, repellat. Quo nam ex, voluptatem voluptatum quia perferendis est explicabo at?
 

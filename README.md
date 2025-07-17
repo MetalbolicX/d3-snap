@@ -1,7 +1,7 @@
 # d3-snap
 
 <div align="center">
-  <img src="./images/logo.png" alt="d3-snap Logo" width="200" height="200" />
+  <img src="./docs/_media/d3-snap.svg" alt="d3-snap Logo" width="200" height="200" />
 </div>
 
 > `d3-snap` Don't limit yourself just to the browser. Visualize your data also on the server.
