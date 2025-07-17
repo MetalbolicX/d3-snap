@@ -19,7 +19,6 @@ const fixXmlCase = (text: string): string => {
 };
 
 export interface D3SnapOptions {
-  d3Module?: typeof d3;
   selector?: string;
   container?: string;
   styles?: string;
@@ -35,48 +34,27 @@ export class D3Snap {
   #document: Document;
   #window: Window | null;
   #d3Element: d3.Selection<d3.BaseType, unknown, null, undefined>;
-  d3: typeof d3;
+  #d3: typeof d3;
 
-  /**
-   * Creates an instance of D3Snap.
-   * @param options - Configuration options for D3Snap.
-   * @param options.d3Module - The d3 module to use.
-   * @param options.selector - The CSS selector for the d3 element.
-   * @param options.container - The HTML container string.
-   * @param options.styles - CSS styles to apply to the SVG.
-   * @param options.canvasModule - The canvas module for creating Canvas elements.
-   * @throws Error if the canvas module is not provided when creating a Canvas.
-   * @example
-   * ```ts
-   * import { D3Snap } from 'd3-snap';
-   * const d3Snap = new D3Snap({
-   * d3Module: d3,
-   * selector: '#my-chart',
-   * container: '<div id="my-chart"></div>',
-   * styles: 'svg { background: #fff; }',
-   * });
-   * const svg = d3Snap.createSVG(800, 600);
-   * ```
-   */
   constructor({
     d3Module = d3,
     selector = "",
     container = "",
     styles = "",
     canvasModule = "",
-  }: D3SnapOptions = {}) {
+  }: D3SnapOptions & { d3Module?: typeof d3 } = {}) {
     const jsDom = container ? new JSDOM(container) : new JSDOM();
     const document = jsDom.window.document;
+    const d3Instance = d3Module;
     const d3Element: any = selector
-      ? d3Module.select(document.body).select(selector)
-      : d3Module.select(document.body);
+      ? d3Instance.select(document.body).select(selector)
+      : d3Instance.select(document.body);
 
-    this.options = { d3Module, selector, container, styles, canvasModule };
+    this.options = { selector, container, styles, canvasModule };
     this.#jsDom = jsDom;
     this.#document = document;
     this.#window = document.defaultView;
     this.#d3Element = d3Element;
-    this.d3 = d3Module;
   }
 
   /**
@@ -170,5 +148,9 @@ export class D3Snap {
     }
     const element = this.#document.querySelector(selector);
     return element?.outerHTML ?? "";
+  }
+
+  public get d3() {
+    return this.#d3;
   }
 }
