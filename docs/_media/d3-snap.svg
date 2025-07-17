@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="700" height="500" viewBox="0 0 700 500">
-  <!-- Server SVG (background, centered and scaled) -->
-  <g transform="translate(100,50) scale(4)">
+  <!-- Server SVG (background, moved right to be behind the "3" of d3) -->
+  <g transform="translate(340,87) scale(3)">
     <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;">
       <path d="M 85.426 32.268 H 4.574 C 2.048 32.268 0 30.22 0 27.694 V 11.379 c 0 -2.526 2.048 -4.574 4.574 -4.574 h 80.851 c 2.526 0 4.574 2.048 4.574 4.574 v 16.314 C 90 30.22 87.952 32.268 85.426 32.268 z" style="fill: rgb(122,140,152);" />
       <circle cx="74.86" cy="19.54" r="5.57" style="fill: rgb(96,183,255);" />
@@ -19,7 +19,7 @@
     </g>
   </g>
   <!-- D3 Logo SVG (foreground, centered and scaled, in front of server) -->
-  <g transform="translate(250,60) scale(0.65)">
+  <g transform="translate(80,60) scale(0.65)">
     <defs>
       <linearGradient id="prefix__a" gradientUnits="userSpaceOnUse" x1="212.44" y1="177.06" x2="515.82" y2="504.93">
         <stop offset="0" stop-color="#F9A03C" />
