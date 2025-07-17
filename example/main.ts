@@ -9,7 +9,7 @@ svg1
   .attr("cy", 100)
   .attr("r", 80)
   .attr("fill", "skyblue");
-console.log("SVG with circle:\n", node1.svgString);
+console.log("SVG with circle:\n", node1.svgToString);
 
 // Example 2: Create SVG with custom styles
 const node2 = new D3Snap({
@@ -22,7 +22,7 @@ svg2
   .attr("cy", 75)
   .attr("r", 50)
   .attr("fill", "yellow");
-console.log("SVG with styled circle:\n", node2.svgString);
+console.log("SVG with styled circle:\n", node2.svgToString);
 
 // Example 3: Serialize the DOM to HTML
 const node3 = new D3Snap({

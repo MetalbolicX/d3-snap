@@ -143,7 +143,7 @@ export class D3Snap {
    * Returns the SVG string from the DOM.
    * @returns SVG string.
    */
-  public get svgString(): string {
+  public get svgToString(): string {
     const svgNode = this.#d3Element.select("svg").node() as SVGSVGElement | null;
     return svgNode ? fixXmlCase(svgNode.outerHTML) : "";
   }
@@ -159,7 +159,7 @@ export class D3Snap {
    * Returns the chart HTML for the selected element.
    * @returns Chart HTML string.
    */
-  public get chartHTML(): string {
+  public get chartToHTML(): string {
     const { selector } = this.options;
     if (!selector) {
       return "";
@@ -168,6 +168,10 @@ export class D3Snap {
     return element?.outerHTML ?? "";
   }
 
+  /**
+   * Returns the D3 module used in this instance.
+   * @returns The D3 module.
+   */
   public get d3() {
     return this.#d3;
   }

@@ -128,3 +128,44 @@ const canvas = d3Snap.createCanvas(400, 300, {
 });
 ```
 
+### svgToString
+
+Returns the SVG string from the DOM.
+
+#### Signature
+
+```ts
+svgToString(): string;
+```
+
+#### Returns
+
+The SVG string representation of the current SVG element.
+
+```ts
+const svgString = d3Snap.svgToString();
+```
+
+### html
+
+Returns the HTML string of the element matching the selector.
+
+```ts
+const htmlString = d3Snap.html;
+```
+
+### chartToHTML
+
+Returns the chart HTML for the selected element.
+
+```ts
+const chartHTMLString = d3Snap.chartToHTML;
+```
+
+### d3
+
+Returns the D3 module used in this instance.
+
+```ts
+const d3Module = d3Snap.d3;
+```
