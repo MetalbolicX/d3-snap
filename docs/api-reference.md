@@ -14,7 +14,6 @@ Creates a new instance of `D3Snap`.
 
 ```ts
 new D3Snap(options?: {
-  d3Module?: typeof d3;
   selector?: string;
   container?: string;
   styles?: string;
@@ -26,7 +25,6 @@ new D3Snap(options?: {
 
 The constructor accepts an optional `options` object with the following properties:
 
-- `d3Module` (typeof d3, optional): The d3 module to use. Defaults to the installed `d3` package.
 - `selector` (string, optional): CSS selector for the element to attach the SVG or Canvas to. Defaults to an empty string (selects the body).
 - `container` (string, optional): HTML string to initialize the virtual DOM. Defaults to an empty string (creates a blank DOM).
 - `styles` (string, optional): CSS styles to inject into the SVG via a `<style>` tag.
@@ -35,6 +33,7 @@ The constructor accepts an optional `options` object with the following properti
 #### Example
 
 ```ts
+// Basic usage
 import { D3Snap } from "d3-snap";
 
 // Basic usage with SVG
@@ -44,11 +43,12 @@ const d3Snap = new D3Snap({
   styles: "svg { background: #fff; }"
 });
 const svg = d3Snap.createSVG(400, 300);
+```
 
+```ts
 // Usage with Canvas (requires node-canvas)
 import * as Canvas from "canvas";
 const d3SnapCanvas = new D3Snap({
-  d3Module: d3,
   selector: "#canvas-chart",
   container: '<div id="canvas-chart"></div>',
   canvasModule: Canvas
@@ -62,3 +62,9 @@ const canvas = d3SnapCanvas.createCanvas(400, 300);
 - **Injecting custom styles**: Add CSS directly to the SVG output.
 - **Virtual DOM for testing**: Use a virtual DOM to test D3 visualizations without a browser.
 - **Canvas rendering**: Create Canvas-based charts for image export or pixel manipulation.
+
+## D3Snap Methods
+
+### createSVG
+
+Creates an SVG element with optional width, height, and attributes.

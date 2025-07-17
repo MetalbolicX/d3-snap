@@ -36,6 +36,24 @@ export class D3Snap {
   #d3Element: d3.Selection<d3.BaseType, unknown, null, undefined>;
   #d3: typeof d3;
 
+  /**
+   * Creates a new D3Snap instance.
+   * @param options - Configuration options for the D3Snap instance.
+   * @param options.d3Module - Optional custom D3 module.
+   * @param options.selector - CSS selector for the D3 element.
+   * @param options.container - HTML container string for the D3 element.
+   * @param options.styles - CSS styles to apply to the SVG.
+   * @param options.canvasModule - Optional custom canvas module for creating HTMLCanvasElement.
+   * @example
+   * ```ts
+   * const d3Snap = new D3Snap({
+   *   selector: "#chart",
+   *   container: '<div id="chart"></div>',
+   *   styles: "svg { background: #fff; }"
+   * });
+   * const svg = d3Snap.createSVG(400, 300);
+   * ```
+   */
   constructor({
     d3Module = d3,
     selector = "",
@@ -59,18 +77,18 @@ export class D3Snap {
 
   /**
    * Creates an SVG element with optional width, height, and attributes.
-   * @param width - SVG width.
-   * @param height - SVG height.
-   * @param attrs - Additional attributes.
+   * @param [width=800] - SVG width.
+   * @param [height=600] - SVG height.
+   * @param [attrs] - Additional attributes.
    * @returns The SVG selection.
    * @example
    * ```ts
-   * const svg = d3Snap.createSVG(800, 600);
+   * const svg = d3Snap.createSVG(800, 600, { viewBox: "0 0 800 600" });
    * ```
    */
   public createSVG(
-    width?: number,
-    height?: number,
+    width: number = 800,
+    height: number = 600,
     attrs?: Record<string, string | number>
   ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
     const svg = this.#d3Element
@@ -99,8 +117,8 @@ export class D3Snap {
 
   /**
    * Creates a Canvas element using the provided canvas module.
-   * @param width - Canvas width.
-   * @param height - Canvas height.
+   * @param [width=800] - Canvas width.
+   * @param [height=600] - Canvas height.
    * @returns The Canvas instance.
    * @throws Error if the canvas module is not provided or does not support HTMLCanvasElement.
    * @example
@@ -108,7 +126,7 @@ export class D3Snap {
    * const canvas = d3Snap.createCanvas(800, 600);
    * ```
    */
-  public createCanvas(width: number, height: number): any {
+  public createCanvas(width: number = 800, height: number = 600): any {
     const Canvas = this.options.canvasModule;
     if (!Canvas || !Canvas.version) {
       throw new Error("Install node-canvas for HTMLCanvasElement support.");
