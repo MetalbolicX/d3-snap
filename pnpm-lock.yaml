@@ -27,6 +27,9 @@ importers:
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
+      vizible-cartesian:
+        specifier: ^1.0.0
+        version: 1.0.0(d3@7.9.0)
 
 packages:
 
@@ -689,6 +692,12 @@ packages:
 
   undici-types@7.8.0:
     resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
+
+  vizible-cartesian@1.0.0:
+    resolution: {integrity: sha512-e4kQh+K1O4PdUmt3g7AXXhnRZTSrt28BGkkOIfGeJpO6uT8u+X82fAHJgXGYYoTNa/2L+OdCwpaDfjFebnwWJQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      d3: ^7.9.0
 
   w3c-xmlserializer@5.0.0:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
@@ -1409,6 +1418,10 @@ snapshots:
       quansync: 0.2.10
 
   undici-types@7.8.0: {}
+
+  vizible-cartesian@1.0.0(d3@7.9.0):
+    dependencies:
+      d3: 7.9.0
 
   w3c-xmlserializer@5.0.0:
     dependencies:
