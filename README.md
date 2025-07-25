@@ -8,13 +8,13 @@
 
 **Supported Versions:**
 
-![d3.js](https://img.shields.io/badge/d3.js->=7.x.x-blue)
+![D3.js](https://img.shields.io/badge/D3.js->=7.x.x-blue)
 ![jsdom](https://img.shields.io/badge/jsdom->=26.x.x-blue)
 
 ## Features
 
-- Capture d3.js visualizations on the server.
-- Easy integration with existing d3.js projects.
+- Capture D3.js visualizations on the server.
+- Easy integration with existing D3.js projects.
 
 ## 🚀 Quick Installation
 
@@ -60,7 +60,7 @@ console.log("Svg message: ", node.svgToString);
 
 ## ✍ Do you want to learn more?
 
-- Learn more about [d3.js](https://d3js.org/).
+- Learn more about [D3.js](https://d3js.org/).
 
 ## Contributing
 
