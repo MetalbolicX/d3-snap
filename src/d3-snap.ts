@@ -95,7 +95,7 @@ export class D3Snap {
       .append("svg")
       .attr("xmlns", "http://www.w3.org/2000/svg");
 
-    if (width && height) {
+    if (width > 0 && height > 0) {
       svg.attr("width", width).attr("height", height);
     }
 
