@@ -92,7 +92,9 @@ export class D3Snap {
     attrs?: Record<string, string | number>
   ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
     const svg = this.#d3Element
-      .append("svg")
+      .selectAll("svg")
+      .data([null])
+      .join("svg")
       .attr("xmlns", "http://www.w3.org/2000/svg");
 
     if (width > 0 && height > 0) {
