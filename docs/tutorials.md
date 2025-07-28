@@ -83,22 +83,27 @@ import { TimeChart } from "vizible-cartesian";
 const node = new D3Snap();
 const svg = node.createSVG(800, 600);
 
-const data = [
-  { date: new Date("2023-01-01"), sales: 100, cost: 80 },
-  { date: new Date("2023-02-01"), sales: 120, cost: 90 },
-  { date: new Date("2023-03-01"), sales: 150, cost: 110 },
-  { date: new Date("2023-04-01"), sales: 170, cost: 130 },
-  { date: new Date("2023-05-01"), sales: 200, cost: 150 },
+cconst data = [
+  { date: new Date("2020-01-01"), sales: 10, cost: 5 },
+  { date: new Date("2020-02-01"), sales: 20, cost: 10 },
+  { date: new Date("2020-03-01"), sales: 30, cost: 15 },
+  { date: new Date("2020-04-01"), sales: 40, cost: 20 },
 ];
 
-const chart = new TimeChart(data, {
-  xSerie: { key: "date" },
+const chart = new TimeChart(svg, data, {
+  xSerie: { field: ({ date }) => date as Date, label: "Date" },
   ySeries: [
-    { key: "sales", name: "Sales", color: "blue" },
-    { key: "cost", name: "Cost", color: "orange" },
+    { field: ({ sales }) => sales as number, color: "#1f77b4", label: "Sales" },
+    { field: ({ cost }) => cost as number, color: "#ff7f0e", label: "Cost" },
   ],
 });
 
-chart.renderSeries(svg);
+chart.renderXAxis("%d %b");
+chart.renderYAxis();
+chart.renderSeries();
+chart.renderLegend();
+chart.renderChartTitle("Sales and Cost Over Time");
+chart.renderYAxisLabel("Sales");
+chart.renderXAxisLabel("Date");
 console.log("Chart HTML:\n", node.html);
 ```
