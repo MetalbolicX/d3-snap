@@ -47,7 +47,7 @@ svg
   .attr("x", 10)
   .attr("y", 20);
 
-console.log("Svg message: ", node.svgToString);
+console.log("Svg message: ", node.svgToString());
 ```
 
 ## 📚 Documentation
