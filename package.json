@@ -1,6 +1,6 @@
 {
   "name": "d3-snap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Captures d3.js visualizations in the server.",
   "type": "module",
   "homepage": "https://metalbolicx.github.io/d3-snap/#/",
