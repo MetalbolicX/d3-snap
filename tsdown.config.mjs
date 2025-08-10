@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ["src/index.ts"],
   platform: "node",
   format: ["esm", "cjs"],
-  external: ["d3"],
+  external: ["d3", "jsdom"],
   dts: true,
   minify: true,
 });
