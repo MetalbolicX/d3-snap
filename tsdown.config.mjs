@@ -7,4 +7,5 @@ export default defineConfig({
   external: ["d3", "jsdom"],
   dts: true,
   minify: true,
+  fixedExtension: true
 });
