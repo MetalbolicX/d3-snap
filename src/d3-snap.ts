@@ -90,9 +90,13 @@ export class D3Snap {
     width: number = 800,
     height: number = 600,
     attrs?: Record<string, string | number>
-  ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
+  // ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
+  ): d3.Selection<d3.BaseType | SVGSVGElement, null, d3.BaseType, undefined> {
     const svg = this.#d3Element
-      .append("svg")
+      // .append("svg")
+      .selectAll("svg")
+      .data([null])
+      .join("svg")
       .attr("xmlns", "http://www.w3.org/2000/svg");
 
     if (width > 0 && height > 0) {
@@ -100,9 +104,12 @@ export class D3Snap {
     }
 
     if (attrs) {
-      Object.entries(attrs).forEach(([key, value]) => {
+      // Object.entries(attrs).forEach(([key, value]) => {
+      //   svg.attr(key, value);
+      // });
+      for (const [key, value] of Object.entries(attrs)) {
         svg.attr(key, value);
-      });
+      }
     }
 
     if (this.options.styles) {
