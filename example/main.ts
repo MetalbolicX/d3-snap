@@ -1,5 +1,5 @@
 import { D3Snap } from "../src/index.ts";
-import { TimeChart } from "vizible-cartesian"
+import { TimeChart } from "vizible-cartesian";
 
 // Example 1: Create a simple SVG with a circle
 const node1 = new D3Snap();
@@ -27,7 +27,7 @@ console.log("SVG with styled circle:\n", node2.svgToString);
 
 // Example 3: Serialize the DOM to HTML
 const node3 = new D3Snap({
-  container: /*html*/"<div id='chart'></div>",
+  container: /*html*/ "<div id='chart'></div>",
   selector: "#chart",
 });
 const svg3 = node3.createSVG(100, 100);
@@ -42,7 +42,7 @@ console.log("Serialized HTML:\n", node3.html);
 
 // Example 4: Get chart HTML for a selected element
 const node4 = new D3Snap({
-  container: /*html*/"<figure><svg></svg></figure>",
+  container: /*html*/ "<figure><svg></svg></figure>",
   selector: "svg",
 });
 const svg4 = node4.createSVG(800, 600);
@@ -55,13 +55,20 @@ const data = [
   { date: new Date("2023-05-01"), sales: 200, cost: 150 },
 ];
 
-const chart = new TimeChart(data, {
-  xSerie: { key: "date" },
-  ySeries: [
-    { key: "sales", name: "Sales", color: "blue" },
-    { key: "cost", name: "Cost", color: "orange" },
-  ],
-});
+const chart = new TimeChart(
+  svg4,
+  data,
+  {
+    xSerie: { field: ({ date }) => date as Date, label: "Date" },
+    ySeries: [
+      { field: ({ sales }) => sales as number, label: "Sales", color: "blue" },
+      { field: ({ cost }) => cost as number, label: "Cost", color: "orange" },
+    ],
+  },
+  {
+    isChartStatic: true,
+  }
+);
 
-chart.renderSeries(svg4);
+chart.renderSeries();
 console.log("Chart HTML:\n", node4.html);

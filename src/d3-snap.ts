@@ -90,13 +90,13 @@ export class D3Snap {
     width: number = 800,
     height: number = 600,
     attrs?: Record<string, string | number>
-  // ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
-  ): d3.Selection<d3.BaseType | SVGSVGElement, null, d3.BaseType, undefined> {
+  ): d3.Selection<SVGSVGElement, unknown, null, undefined> {
+  // ): d3.Selection<SVGSVGElement, null, d3.BaseType, undefined> {
     const svg = this.#d3Element
-      // .append("svg")
-      .selectAll("svg")
-      .data([null])
-      .join("svg")
+      .append("svg")
+      // .selectAll("svg")
+      // .data([null])
+      // .join("svg")
       .attr("xmlns", "http://www.w3.org/2000/svg");
 
     if (width > 0 && height > 0) {
